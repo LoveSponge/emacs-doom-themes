@@ -32,6 +32,7 @@ determine the exact padding."
 (def-doom-theme doom-ayu-light
   "A light theme inspired by Ayu Light"
 
+<<<<<<< HEAD
   ;; name             default   256       16
   (
    ;; common
@@ -65,6 +66,40 @@ determine the exact padding."
    (ui-selection-border   '("#E1E1E2" "grey"    "grey"))
    (ui-guide-active       (doom-lighten common-ui 0.59))
    (ui-guide-normal       (doom-lighten common-ui 0.20))
+=======
+  ;; name        default   256       16
+  (
+   ;; common
+   (common-accent   '("#ff9940" "orange"  "orange" ))
+   (common-bg       '("#fafafa" "black"   "black"  ))
+   (common-fg       '("#575f66" "grey"    "grey"   ))
+   (common-ui       '("#ba9199" "grey"    "grey"   ))
+   (test            '("#2ea8e6" "grey"    "grey"   ))
+   ;; syntax
+   (syntax-tag      '("#55b4d4" "cyan"    "blue"   ))
+   (syntax-func     '("#f2ae49" "yellow"  "yellow" ))
+   (syntax-entity   '("#399ee6" "blue"    "blue"   ))
+   (syntax-string   '("#86b300" "green"   "green"  ))
+   (syntax-regexp   '("#4cbf99" "teal"    "green"  ))
+   (syntax-markup   '("#f07171" "red"     "red"    ))
+   (syntax-keyword  '("#fa8d3e" "orange"  "orange" ))
+   (syntax-special  '("#e6ba7e" "yellow"  "yellow" ))
+   (syntax-comment  '("#abb0b6" "grey"    "grey"   ))
+   (syntax-constant '("#a37acc" "magenta" "purple" ))
+   (syntax-operator '("#ed9366" "orange"  "orange" ))
+   (syntax-error    '("#f51818" "red"     "red"    ))
+   ;; ui
+   (ui-line               (doom-darken common-bg 0.07))
+   (ui-panel-shadow       (doom-lighten common-bg 0.35))
+   (ui-panel-border       (doom-lighten common-bg 0.45))
+   (ui-gutter-normal      (doom-lighten common-ui 0.45))
+   (ui-gutter-active      common-ui)
+   (ui-selection-bg       (doom-blend common-bg test 0.7))
+   (ui-selection-inactive (doom-lighten test 0.93))
+   (ui-selection-border   (doom-lighten test 0.93))
+   (ui-guide-active       (doom-lighten common-ui 0.75))
+   (ui-guide-normal       (doom-lighten common-ui 0.35))
+>>>>>>> 3f8b5c84a2cfa440832110d758e8b779f156ae84
    ;; vcs
    (vcs-added    '("#99bf4d" "green" "green" ))
    (vcs-modified '("#709ecc" "blue"  "blue"  ))
@@ -133,6 +168,7 @@ determine the exact padding."
 
    (modeline-bg
     (if -modeline-bright
+<<<<<<< HEAD
         (doom-darken blue 0.475)
       `(,(doom-darken (car bg) 0.05) ,@(cdr base0))))
    (modeline-bg-l
@@ -142,6 +178,16 @@ determine the exact padding."
    (modeline-bg-inactive   `(,(doom-lighten (car bg) 0.1) ,@(cdr bg)))
    (modeline-bg-inactive-l `(,(car bg) ,@(cdr base1)))
    )
+=======
+        (doom-lighten blue 0.475)
+      `(,(doom-lighten (car bg) 0.15) ,@(cdr base0))))
+   (modeline-bg-l
+    (if -modeline-bright
+        (doom-lighten blue 0.45)
+      `(,(doom-lighten (car bg-alt) 0.1) ,@(cdr base0))))
+   (modeline-bg-inactive   `(,(doom-lighten (car bg) 0.1) ,@(cdr bg)))
+   (modeline-bg-inactive-l `(,(car bg) ,@(cdr base1))))
+>>>>>>> 3f8b5c84a2cfa440832110d758e8b779f156ae84
 
   ;; --- extra faces ------------------------
   (
@@ -208,10 +254,13 @@ determine the exact padding."
    (org-hide :foreground hidden)
    (solaire-org-hide-face :foreground hidden)
    (org-headline-done :foreground syntax-comment)
+<<<<<<< HEAD
    ((org-block &override) :background ui-panel-border)
    ((org-quote &override) :background ui-panel-border)
    ((org-block-begin-line &override) :background common-bg :foreground syntax-comment)
    ((org-document-info-keyword &override) :foreground syntax-comment)
+=======
+>>>>>>> 3f8b5c84a2cfa440832110d758e8b779f156ae84
 
    (js2-object-property :foreground common-fg)
 
@@ -230,7 +279,10 @@ determine the exact padding."
    (company-scrollbar-bg :background common-bg)
    (company-scrollbar-fg :background syntax-comment)
 
+<<<<<<< HEAD
    (hl-line :background ui-line)
+=======
+>>>>>>> 3f8b5c84a2cfa440832110d758e8b779f156ae84
    (highlight-numbers-number :foreground syntax-func :weight 'normal)
 
    ;; diff-mode
