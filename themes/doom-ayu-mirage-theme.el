@@ -58,7 +58,7 @@ determine the exact padding."
    (ui-panel-shadow       (doom-darken common-bg 0.35))
    (ui-panel-border       (doom-darken common-bg 0.45))
    (ui-gutter-normal      (doom-darken common-ui 0.45)) ;; alpha replacement
-   (ui-gutter-active      common-ui) ;; alpha replacement
+   (ui-gutter-active      common-ui)
    (ui-selection-bg       (doom-blend common-bg test 0.8)) ;; fade replacement
    (ui-selection-inactive (doom-lighten test 0.93)) ;; fade replacement
    (ui-selection-border   (doom-lighten test 0.93)) ;; fade replacement
@@ -80,8 +80,8 @@ determine the exact padding."
    (base6      ui-guide-normal)
    (base7      ui-panel-shadow)
    (base8      ui-panel-border)
-   (fg         common-ui)
-   (fg-alt     common-fg)
+   (fg         common-fg)
+   (fg-alt     common-ui)
    (grey       syntax-comment)
    (red        syntax-markup)
    (orange     syntax-keyword)
@@ -138,14 +138,16 @@ determine the exact padding."
         (doom-darken blue 0.45)
       `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
    (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.1) ,@(cdr bg-alt)))
-   (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1))))
+   (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1)))
+   )
 
   ;; --- extra faces ------------------------
-  ((elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
+  (
+   (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
 
    (evil-goggles-default-face :inherit 'region :background (doom-blend region bg 0.5))
 
-   ((line-number &override) :foreground base4)
+   ((line-number &override) :foreground comments)
    ((line-number-current-line &override) :foreground fg)
 
    (font-lock-comment-face
@@ -204,6 +206,10 @@ determine the exact padding."
    (org-hide :foreground hidden)
    (solaire-org-hide-face :foreground hidden)
    (org-headline-done :foreground syntax-comment)
+   ((org-block &override) :background ui-panel-border)
+   ((org-quote &override) :background ui-panel-border)
+   ((org-block-begin-line &override) :background common-bg :foreground syntax-comment)
+   ((org-document-info-keyword &override) :foreground syntax-comment)
 
    (rjsx-tag :foreground cyan)
    (rjsx-tag-bracket-face :foreground (doom-darken cyan 0.5))
@@ -218,6 +224,14 @@ determine the exact padding."
 
    (hl-line :background ui-line)
    (highlight-numbers-number :foreground syntax-func :weight 'normal)
+
+   ;; treemacs
+   (treemacs-file-face :foreground fg-alt)
+   (treemacs-directory-face :foreground fg-alt)
+   (treemacs-git-modified-face :foreground vcs-modified)
+
+   ;; diff-mode
+   (diff-removed :foreground vcs-removed)
   )
 )
 

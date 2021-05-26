@@ -1,74 +1,73 @@
-;;; doom-ayu-light-theme.el --- inspired by Atom One Dark -*- no-byte-compile: t; -*-
+;;; doom-ayu-dark-theme.el --- inspired by Atom One Dark -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
-(defgroup doom-ayu-light-theme nil
+(defgroup doom-ayu-dark-theme nil
   "Options for doom-themes"
   :group 'doom-themes)
 
-(defcustom doom-ayu-light-brighter-modeline nil
+(defcustom doom-ayu-dark-brighter-modeline nil
   "If non-nil, more vivid colors will be used to style the mode-line."
-  :group 'doom-ayu-light-theme
+  :group 'doom-ayu-dark-theme
   :type 'boolean)
 
-(defcustom doom-ayu-light-brighter-comments nil
+(defcustom doom-ayu-dark-brighter-comments nil
   "If non-nil, comments will be highlighted in more vivid colors."
-  :group 'doom-ayu-light-theme
+  :group 'doom-ayu-dark-theme
   :type 'boolean)
 
-(defcustom doom-ayu-light-comment-bg doom-ayu-light-brighter-comments
+(defcustom doom-ayu-dark-comment-bg doom-ayu-dark-brighter-comments
   "If non-nil, comments will have a subtle, darker background. Enhancing their
 legibility."
-  :group 'doom-ayu-light-theme
+  :group 'doom-ayu-dark-theme
   :type 'boolean)
 
-(defcustom doom-ayu-light-padded-modeline doom-themes-padded-modeline
+(defcustom doom-ayu-dark-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
-  :group 'doom-ayu-light-theme
+  :group 'doom-ayu-dark-theme
   :type '(choice integer boolean))
 
 ;;
-(def-doom-theme doom-ayu-light
-  "A light theme inspired by Ayu Light"
+(def-doom-theme doom-ayu-dark
+  "A dark theme inspired by Ayu Dark"
 
-  ;; name             default   256       16
+  ;; name        default   256       16
   (
    ;; common
-   (common-accent   '("#FF9940" "orange"  "orange" ))
-   (common-bg       '("#FAFAFA" "white"   "white"  ))
-   (common-fg       '("#575F66" "grey"    "grey"   ))
-   (common-ui       '("#8A9199" "grey"    "grey"   ))
-   (test            '("#2EA8E6" "grey"    "grey"   ))
+   (common-accent   '("#E6B450" "orange"  "orange" ))
+   (common-bg       '("#0A0E14" "black"   "black"  ))
+   (common-fg       '("#B3B1AD" "grey"    "grey"   ))
+   (common-ui       '("#4D5566" "grey"    "grey"   ))
+   (test            '("#4D5566" "grey"    "grey"   ))
    ;; syntax
-   (syntax-tag      '("#55B4D4" "cyan"    "blue"   ))
-   (syntax-func     '("#F2AE49" "yellow"  "yellow" ))
-   (syntax-entity   '("#399EE6" "blue"    "blue"   ))
-   (syntax-string   '("#86B300" "green"   "green"  ))
-   (syntax-regexp   '("#4CBF99" "teal"    "green"  ))
-   (syntax-markup   '("#F07171" "red"     "red"    ))
-   (syntax-keyword  '("#FA8D3E" "orange"  "orange" ))
-   (syntax-special  '("#E6BA7E" "yellow"  "yellow" ))
-   (syntax-comment  '("#ABB0B6" "grey"    "grey"   ))
-   (syntax-constant '("#A37ACC" "magenta" "purple" ))
-   (syntax-operator '("#ED9366" "orange"  "orange" ))
-   (syntax-error    '("#F51818" "red"     "red"    ))
+   (syntax-tag      '("#39BAE6" "cyan"    "blue"   ))
+   (syntax-func     '("#FFB454" "yellow"  "yellow" ))
+   (syntax-entity   '("#59C2FF" "blue"    "blue"   ))
+   (syntax-string   '("#C2D94C" "green"   "green"  ))
+   (syntax-regexp   '("#95E6CB" "teal"    "green"  ))
+   (syntax-markup   '("#F07178" "red"     "red"    ))
+   (syntax-keyword  '("#FF8F40" "orange"  "orange" ))
+   (syntax-special  '("#E6B673" "yellow"  "yellow" ))
+   (syntax-comment  '("#626A73" "grey"    "grey"   ))
+   (syntax-constant '("#FFEE99" "magenta" "purple" ))
+   (syntax-operator '("#F29668" "orange"  "orange" ))
+   (syntax-error    '("#FF3333" "red"     "red"    ))
    ;; ui
-   (ui-line               (doom-blend common-bg common-ui 0.91)) ;; alpha replacement
-   (ui-panel-bg           '("#FFFFFF" "white"   "white"))
-   (ui-panel-shadow       (doom-lighten '("#424A50" "grey" "grey") 0.5))
-   (ui-panel-border       '("#F0F0F0" "white" "white"))
-   (ui-gutter-normal      (doom-lighten common-ui 0.66))
-   (ui-gutter-active      (doom-lighten common-ui 0.33))
-   (ui-selection-bg       '("#D1E4F4" "cyan"    "blue"))
-   (ui-selection-inactive '("#E7E8E9" "grey"    "grey"))
-   (ui-selection-border   '("#E1E1E2" "grey"    "grey"))
-   (ui-guide-active       (doom-lighten common-ui 0.59))
-   (ui-guide-normal       (doom-lighten common-ui 0.20))
+   (ui-line               (doom-darken common-bg 0.25))
+   (ui-panel-shadow       (doom-darken common-bg 0.35))
+   (ui-panel-border       (doom-darken common-bg 0.45))
+   (ui-gutter-normal      (doom-darken common-ui 0.45)) ;; alpha replacement
+   (ui-gutter-active      common-ui)
+   (ui-selection-bg       (doom-blend common-bg test 0.8)) ;; fade replacement
+   (ui-selection-inactive (doom-lighten test 0.93)) ;; fade replacement
+   (ui-selection-border   (doom-lighten test 0.93)) ;; fade replacement
+   (ui-guide-active       (doom-darken common-ui 0.75)) ;; alpha replacement
+   (ui-guide-normal       (doom-darken common-ui 0.35)) ;; alpha replacement
    ;; vcs
-   (vcs-added    '("#99bf4d" "green" "green" ))
-   (vcs-modified '("#709ecc" "blue"  "blue"  ))
-   (vcs-removed  '("#f27983" "red"   "red"   ))
+   (vcs-added    '("#91b362" "green" "green" ))
+   (vcs-modified '("#6994bf" "blue"  "blue"  ))
+   (vcs-removed  '("#d96c75" "red"   "red"   ))
 
    (bg         common-bg)
    (bg-alt     common-bg)
@@ -100,10 +99,9 @@ determine the exact padding."
    (highlight      common-accent)
    (vertical-bar   ui-panel-border)
    (selection      ui-selection-inactive)
-   ;; (builtin        syntax-func)
-   (builtin        syntax-entity)
-   (comments       (if doom-ayu-light-brighter-comments syntax-comment syntax-comment))
-   (doc-comments   (if doom-ayu-light-brighter-comments syntax-comment syntax-comment))
+   (builtin        syntax-func)
+   (comments       (if doom-ayu-dark-brighter-comments syntax-comment syntax-comment))
+   (doc-comments   (if doom-ayu-dark-brighter-comments syntax-comment syntax-comment))
    (constants      syntax-constant)
    (functions      syntax-func)
    (keywords       syntax-keyword)
@@ -123,10 +121,10 @@ determine the exact padding."
 
    ;; custom categories
    (hidden     (car bg))
-   (-modeline-bright doom-ayu-light-brighter-modeline)
+   (-modeline-bright doom-ayu-dark-brighter-modeline)
    (-modeline-pad
-    (when doom-ayu-light-padded-modeline
-      (if (integerp doom-ayu-light-padded-modeline) doom-ayu-light-padded-modeline 4)))
+    (when doom-ayu-dark-padded-modeline
+      (if (integerp doom-ayu-dark-padded-modeline) doom-ayu-dark-padded-modeline 4)))
 
    (modeline-fg     common-ui)
    (modeline-fg-alt base5)
@@ -134,13 +132,13 @@ determine the exact padding."
    (modeline-bg
     (if -modeline-bright
         (doom-darken blue 0.475)
-      `(,(doom-darken (car bg) 0.05) ,@(cdr base0))))
+      `(,(doom-darken (car bg-alt) 0.15) ,@(cdr base0))))
    (modeline-bg-l
     (if -modeline-bright
         (doom-darken blue 0.45)
       `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
-   (modeline-bg-inactive   `(,(doom-lighten (car bg) 0.1) ,@(cdr bg)))
-   (modeline-bg-inactive-l `(,(car bg) ,@(cdr base1)))
+   (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.1) ,@(cdr bg-alt)))
+   (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1)))
    )
 
   ;; --- extra faces ------------------------
@@ -154,7 +152,7 @@ determine the exact padding."
 
    (font-lock-comment-face
     :foreground comments
-    :background (if doom-ayu-light-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-ayu-dark-comment-bg (doom-lighten bg 0.05)))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
@@ -213,15 +211,9 @@ determine the exact padding."
    ((org-block-begin-line &override) :background common-bg :foreground syntax-comment)
    ((org-document-info-keyword &override) :foreground syntax-comment)
 
-   (js2-object-property :foreground common-fg)
-
    (rjsx-tag :foreground cyan)
-   (rjsx-tag-bracket-face :foreground (doom-lighten cyan 0.5))
+   (rjsx-tag-bracket-face :foreground (doom-darken cyan 0.5))
    (rjsx-attr :foreground syntax-func)
-
-   (web-mode-html-tag-face :foreground cyan)
-   (web-mode-html-tag-bracket-face :foreground (doom-lighten cyan 0.5))
-   (web-mode-html-attr-name-face :foreground syntax-func)
 
    (company-tooltip :foreground common-fg :background common-bg)
    (company-tooltip-annotation :foreground common-fg)
@@ -233,9 +225,14 @@ determine the exact padding."
    (hl-line :background ui-line)
    (highlight-numbers-number :foreground syntax-func :weight 'normal)
 
+   ;; treemacs
+   (treemacs-file-face :foreground fg-alt)
+   (treemacs-directory-face :foreground fg-alt)
+   (treemacs-git-modified-face :foreground vcs-modified)
+
    ;; diff-mode
    (diff-removed :foreground vcs-removed)
-   )
   )
+)
 
-;;; doom-ayu-light-theme.el ends here
+;;; doom-ayu-dark-theme.el ends here
