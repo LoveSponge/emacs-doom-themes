@@ -1,4 +1,4 @@
-;;; doom-ayu-mirage-theme.el -*- no-byte-compile: t; -*-
+;;; doom-ayu-mirage-theme.el --- inspired by Atom One Dark -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -58,7 +58,7 @@ determine the exact padding."
    (ui-panel-shadow       (doom-darken common-bg 0.35))
    (ui-panel-border       (doom-darken common-bg 0.45))
    (ui-gutter-normal      (doom-darken common-ui 0.45)) ;; alpha replacement
-   (ui-gutter-active      common-ui) ;; alpha replacement
+   (ui-gutter-active      common-ui)
    (ui-selection-bg       (doom-blend common-bg test 0.8)) ;; fade replacement
    (ui-selection-inactive (doom-lighten test 0.93)) ;; fade replacement
    (ui-selection-border   (doom-lighten test 0.93)) ;; fade replacement
@@ -70,7 +70,7 @@ determine the exact padding."
    (vcs-removed  '("#f27983" "red"   "red"   ))
 
    (bg         common-bg)
-   (bg-alt     ui-line)
+   (bg-alt     common-bg)
    (base0      ui-gutter-normal)
    (base1      ui-gutter-active)
    (base2      ui-selection-bg)
@@ -82,25 +82,24 @@ determine the exact padding."
    (base8      ui-panel-border)
    (fg         common-fg)
    (fg-alt     common-ui)
-
-   (grey       ui-line)
+   (grey       syntax-comment)
    (red        syntax-markup)
    (orange     syntax-keyword)
    (green      syntax-string)
    (teal       syntax-regexp)
    (yellow     syntax-func)
    (blue       syntax-entity)
-   (dark-blue  (doom-darken syntax-entity 0.2))
+   (dark-blue  (doom-darken syntax-entity 1))
    (magenta    syntax-constant)
-   (violet     (doom-lighten syntax-constant 0.2))
+   (violet     (doom-lighten syntax-constant 1))
    (cyan       syntax-tag)
-   (dark-cyan  (doom-darken syntax-tag 0.2))
+   (dark-cyan  (doom-darken syntax-tag 1))
 
    ;; face categories -- required for all themes
    (highlight      common-accent)
    (vertical-bar   ui-panel-border)
-   (selection      nil)
-   (builtin        nil)
+   (selection      ui-selection-inactive)
+   (builtin        syntax-func)
    (comments       (if doom-ayu-mirage-brighter-comments syntax-comment syntax-comment))
    (doc-comments   (if doom-ayu-mirage-brighter-comments syntax-comment syntax-comment))
    (constants      syntax-constant)
@@ -127,28 +126,29 @@ determine the exact padding."
     (when doom-ayu-mirage-padded-modeline
       (if (integerp doom-ayu-mirage-padded-modeline) doom-ayu-mirage-padded-modeline 4)))
 
-   (modeline-fg     common-fg)
-   (modeline-fg-alt common-accent)
+   (modeline-fg     common-ui)
+   (modeline-fg-alt base5)
 
    (modeline-bg
     (if -modeline-bright
-        (doom-darken blue 0.45)
-      `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
-   (modeline-bg-l
-    (if -modeline-bright
         (doom-darken blue 0.475)
       `(,(doom-darken (car bg-alt) 0.15) ,@(cdr base0))))
-   (modeline-bg-inactive   `(,(car bg-alt) ,@(cdr base1)))
-   (modeline-bg-inactive-l `(,(doom-darken (car bg-alt) 0.1) ,@(cdr bg-alt))))
+   (modeline-bg-l
+    (if -modeline-bright
+        (doom-darken blue 0.45)
+      `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
+   (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.1) ,@(cdr bg-alt)))
+   (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1)))
+   )
 
   ;; --- extra faces ------------------------
-  ((elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
+  (
+   (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
 
    (evil-goggles-default-face :inherit 'region :background (doom-blend region bg 0.5))
 
-   ((line-number &override) :foreground base4)
+   ((line-number &override) :foreground comments)
    ((line-number-current-line &override) :foreground fg)
-   ((paren-face-match &override) :foreground fg :background ui-selection-bg :weight 'ultra-bold)
 
    (font-lock-comment-face
     :foreground comments
@@ -176,13 +176,13 @@ determine the exact padding."
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive-l)))
 
    ;; Doom modeline
-   (doom-modeline-bar :background (if -modeline-bright modeline-bg modeline-bg) :weight 'normal)
+   (doom-modeline-bar :background (if -modeline-bright modeline-bg highlight) :weight 'normal)
    (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'normal)
    (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'normal)
    (doom-modeline-buffer-project-root :foreground green :weight 'normal)
 
    ;; ivy-mode
-   (ivy-current-match :background common-bg)
+   (ivy-current-match :background ui-line)
    (ivy-minibuffer-match-face-1 :foreground common-accent :weight 'bold)
    (ivy-minibuffer-match-face-2 :foreground common-accent :weight 'bold)
    (ivy-minibuffer-match-face-3 :foreground common-accent :weight 'bold)
@@ -206,18 +206,15 @@ determine the exact padding."
    (org-hide :foreground hidden)
    (solaire-org-hide-face :foreground hidden)
    (org-headline-done :foreground syntax-comment)
+   ((org-block &override) :background ui-panel-border)
+   ((org-quote &override) :background ui-panel-border)
+   ((org-block-begin-line &override) :background common-bg :foreground syntax-comment)
+   ((org-document-info-keyword &override) :foreground syntax-comment)
 
-   ;; rjsx-mode
    (rjsx-tag :foreground cyan)
    (rjsx-tag-bracket-face :foreground (doom-darken cyan 0.5))
    (rjsx-attr :foreground syntax-func)
 
-   ;; web-mode
-   (web-mode-html-tag-face :foreground cyan)
-   (web-mode-html-tag-bracket-face :foreground (doom-darken cyan 0.5))
-   (web-mode-html-attr-name-face :foreground syntax-func)
-
-   ;; company-mode
    (company-tooltip :foreground common-fg :background common-bg)
    (company-tooltip-annotation :foreground common-fg)
    (company-tooltip-selection :background ui-line)
@@ -225,9 +222,17 @@ determine the exact padding."
    (company-scrollbar-bg :background common-bg)
    (company-scrollbar-fg :background syntax-comment)
 
+   (hl-line :background ui-line)
+   (highlight-numbers-number :foreground syntax-func :weight 'normal)
+
+   ;; treemacs
+   (treemacs-file-face :foreground fg-alt)
+   (treemacs-directory-face :foreground fg-alt)
+   (treemacs-git-modified-face :foreground vcs-modified)
+
    ;; diff-mode
    (diff-removed :foreground vcs-removed)
-   )
   )
+)
 
 ;;; doom-ayu-mirage-theme.el ends here
