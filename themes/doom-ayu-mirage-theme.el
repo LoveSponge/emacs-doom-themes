@@ -82,12 +82,7 @@ determine the exact padding."
    (base8      ui-panel-border)
    (fg         common-fg)
    (fg-alt     common-ui)
-<<<<<<< HEAD
    (grey       syntax-comment)
-=======
-
-   (grey       ui-line)
->>>>>>> 3f8b5c84a2cfa440832110d758e8b779f156ae84
    (red        syntax-markup)
    (orange     syntax-keyword)
    (green      syntax-string)
@@ -235,7 +230,6 @@ determine the exact padding."
    (company-scrollbar-bg :background common-bg)
    (company-scrollbar-fg :background syntax-comment)
 
-<<<<<<< HEAD
    (hl-line :background ui-line)
    (highlight-numbers-number :foreground syntax-func :weight 'normal)
 
@@ -246,11 +240,6 @@ determine the exact padding."
 
    ;; diff-mode
    (diff-removed :foreground vcs-removed)
-=======
-   ;; diff-mode
-   (diff-removed :foreground vcs-removed)
-   )
->>>>>>> 3f8b5c84a2cfa440832110d758e8b779f156ae84
   )
 
 ;;; doom-ayu-mirage-theme.el ends here
