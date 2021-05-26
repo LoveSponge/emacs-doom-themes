@@ -66,7 +66,7 @@ determine the exact padding."
    (green-dark '("#30c965"                          ))
 
    ;; face categories -- required for all themes
-   (highlight      teal)
+   (highlight      red)
    (vertical-bar   (doom-darken base1 0.1))
    (selection      cyan)
    (builtin        teal)
@@ -191,12 +191,12 @@ determine the exact padding."
    (ivy-minibuffer-match-highlight  :foreground red)
    (ivy-highlight-face              :foreground red)
    (ivy-minibuffer-match-face-2
-     :inherit 'ivy-minibuffer-match-face-1
-     :foreground red :background base1 :weight 'semi-bold)
+    :inherit 'ivy-minibuffer-match-face-1
+    :foreground red :background base1 :weight 'semi-bold)
    (ivy-minibuffer-match-face-4
-     :inherit 'ivy-minibuffer-match-face-2
-     :foreground red :weight 'semi-bold)
-   (ivy-current-match :background dark-blue :distant-foreground base0 :weight 'normal)
+    :inherit 'ivy-minibuffer-match-face-2
+    :foreground red :weight 'semi-bold)
+   (ivy-current-match :background red :distant-foreground base0 :weight 'normal)
 
    ;; treemacs
    (treemacs-directory-face     :foreground base8)
@@ -262,7 +262,6 @@ determine the exact padding."
 
    ;; org-mode
    (org-hide              :foreground hidden)
-   (solaire-org-hide-face :foreground hidden)
    (org-code              :foreground blue)
    (org-table             :foreground fg-alt)
 
@@ -282,7 +281,6 @@ determine the exact padding."
    (web-mode-html-tag-bracket-face :foreground teal)
    (web-mode-keyword-face          :foreground teal)
    (web-mode-block-control-face    :foreground red)
-   (web-mode-block-delimiter-face  :foreground teal)
    (web-mode-variable-name-face    :foreground (doom-lighten green 0.5))
 
    ;; typescript
@@ -300,6 +298,9 @@ determine the exact padding."
    (js2-jsdoc-tag                :foreground teal)
    (js2-jsdoc-html-tag-delimiter :foreground base8)
    (js2-jsdoc-html-tag-name      :foreground base8)
+   
+   ;; rjsx
+   (rjsx-attr :foreground blue)
    )
 
   ;; --- extra variables ---------------------

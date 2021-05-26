@@ -64,7 +64,7 @@ determine the exact padding."
    (vertical-bar   (doom-darken bg 0.25))
    (selection      base4)
    (builtin        orange)
-   (comments       base5)
+   (comments       (if doom-spacegrey-brighter-comments dark-cyan base5))
    (doc-comments   (doom-lighten (if doom-spacegrey-brighter-comments dark-cyan base5) 0.25))
    (constants      orange)
    (functions      blue)
@@ -99,14 +99,14 @@ determine the exact padding."
 
    (modeline-bg
     (if -modeline-bright
-        (doom-darken base3 0.05)
+        (doom-darken base3 0.1)
       base1))
    (modeline-bg-l
     (if -modeline-bright
-        (doom-darken base3 0.1)
+        (doom-darken base3 0.05)
       base1))
-   (modeline-bg-inactive (doom-darken bg 0.1))
-   (modeline-bg-inactive-l `(,(doom-darken (car bg-alt) 0.05) ,@(cdr base1))))
+   (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.05) ,@(cdr base1)))
+   (modeline-bg-inactive-l (doom-darken bg 0.1)))
 
 
   ;; --- extra faces ------------------------

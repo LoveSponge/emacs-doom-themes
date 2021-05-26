@@ -97,9 +97,7 @@ real file buffers will now be brighter instead."
    (modeline-bg
     `(,(car (if doom-manegarm-muted-modeline (doom-darken teal 0.75) (doom-darken green 0.8)))
       ,@(cdr base0)))
-   (modeline-bg-l modeline-bg)
-   (modeline-bg-inactive   `(,(doom-darken (car bg) 0.2) ,@(cdr base0)))
-   (modeline-bg-inactive-l `(,(doom-darken (car bg) 0.2) ,@(cdr base0))))
+   (modeline-bg-inactive   `(,(doom-darken (car bg) 0.2) ,@(cdr base0))))
 
   ;; --- extra faces ------------------------
   ((elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
@@ -125,15 +123,6 @@ real file buffers will now be brighter instead."
     :background modeline-bg-inactive :foreground modeline-fg-alt
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
    (mode-line-emphasis :foreground highlight)
-
-   (solaire-mode-line-face
-    :inherit 'mode-line
-    :background modeline-bg-l
-    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-l)))
-   (solaire-mode-line-inactive-face
-    :inherit 'mode-line-inactive
-    :background modeline-bg-inactive-l
-    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive-l)))
 
    ;; Doom modeline
    (doom-modeline-bar :background highlight)
@@ -207,15 +196,15 @@ real file buffers will now be brighter instead."
    (markdown-code-face :background (doom-lighten base3 0.05))
 
    ;; UI
-   (button :foreground teal :bold t :underline t)
-   (custom-button :foreground teal :bold t :underline t :background bg)
+   (button :foreground teal :weight 'bold :underline t)
+   (custom-button :foreground teal :weight 'bold :underline t :background bg)
 
    ;; evil
-   (evil-ex-search :background fg :foreground bg)
-   (evil-ex-lazy-highlight :background fg :foreground bg)
+   (evil-ex-search :inverse-radio t)
+   (evil-ex-lazy-highlight :inverse-radio t)
 
    ;; isearch
-   (isearch :foreground bg :background fg :weight 'bold)
+   (isearch :inverse-radio t :weight 'bold)
 
    ;; dired / diredfl
    (dired-directory :foreground green :bold 'bold)
@@ -225,9 +214,7 @@ real file buffers will now be brighter instead."
    (diredfl-number :foreground red)
 
    ;; lsp
-   (lsp-face-highlight-read :background (doom-darken blue 0.5) :foreground yellow)
-   (lsp-face-highlight-write :inherit 'lsp-face-highlight-read)
-   (lsp-face-highlight-textual :inherit 'lsp-face-highlight-read)
+   ((lsp-face-highlight-textual &override) :background (doom-darken blue 0.5) :foreground yellow)
 
    ;; we don't want numbers to be bold
    ((highlight-numbers-number &override) :inherit 'normal :foreground numbers)
@@ -240,8 +227,7 @@ real file buffers will now be brighter instead."
    (org-level-5 :foreground red :bold t)
    (org-level-6 :foreground yellow :bold t)
    (org-hide :foreground hidden)
-   (org-todo :foreground strings :bold 'inherit)
-   (solaire-org-hide-face :foreground hidden))
+   (org-todo :foreground strings :bold 'inherit))
 
   ;; --- extra variables ---------------------
   ()
