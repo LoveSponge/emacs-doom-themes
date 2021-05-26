@@ -70,7 +70,7 @@ determine the exact padding."
    (vcs-removed  '("#f27983" "red"   "red"   ))
 
    (bg         common-bg)
-   (bg-alt     common-bg)
+   (bg-alt     ui-line)
    (base0      ui-gutter-normal)
    (base1      ui-gutter-active)
    (base2      ui-selection-bg)
@@ -89,11 +89,11 @@ determine the exact padding."
    (teal       syntax-regexp)
    (yellow     syntax-func)
    (blue       syntax-entity)
-   (dark-blue  (doom-darken syntax-entity 1))
+   (dark-blue  (doom-darken syntax-entity 0.4))
    (magenta    syntax-constant)
-   (violet     (doom-lighten syntax-constant 1))
+   (violet     (doom-lighten syntax-constant 0.3))
    (cyan       syntax-tag)
-   (dark-cyan  (doom-darken syntax-tag 1))
+   (dark-cyan  (doom-darken syntax-tag 0.61))
 
    ;; face categories -- required for all themes
    (highlight      common-accent)
@@ -126,8 +126,8 @@ determine the exact padding."
     (when doom-ayu-mirage-padded-modeline
       (if (integerp doom-ayu-mirage-padded-modeline) doom-ayu-mirage-padded-modeline 4)))
 
-   (modeline-fg     common-ui)
-   (modeline-fg-alt base5)
+   (modeline-fg     common-fg)
+   (modeline-fg-alt common-accent)
 
    (modeline-bg
     (if -modeline-bright
@@ -148,7 +148,7 @@ determine the exact padding."
    (evil-goggles-default-face :inherit 'region :background (doom-blend region bg 0.5))
 
    ((line-number &override) :foreground comments)
-   ((line-number-current-line &override) :foreground fg)
+   ((line-number-current-line &override) :foreground fg-alt)
 
    (font-lock-comment-face
     :foreground comments
@@ -179,16 +179,22 @@ determine the exact padding."
    (doom-modeline-bar :background (if -modeline-bright modeline-bg highlight) :weight 'normal)
    (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'normal)
    (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'normal)
-   (doom-modeline-buffer-project-root :foreground green :weight 'normal)
+   (doom-modeline-project-dir :foreground green :weight 'bold)
+   (doom-modeline-buffer-modified :foreground red :weight 'bold)
 
    ;; ivy-mode
-   (ivy-current-match :background ui-line)
+   (ivy-current-match :background bg)
    (ivy-minibuffer-match-face-1 :foreground common-accent :weight 'bold)
    (ivy-minibuffer-match-face-2 :foreground common-accent :weight 'bold)
    (ivy-minibuffer-match-face-3 :foreground common-accent :weight 'bold)
    (ivy-minibuffer-match-face-4 :foreground common-accent :weight 'bold)
 
    ;; --- major-mode faces -------------------
+
+   ;; magit
+   ;; (magit-diff-hunk-region :background fg)
+   ;; (magit-diff-removed :background (doom-blend bg vcs-removed 0.5))
+
    ;; css-mode / scss-mode
    (css-proprietary-property :foreground orange)
    (css-property             :foreground green)
@@ -226,8 +232,8 @@ determine the exact padding."
    (highlight-numbers-number :foreground syntax-func :weight 'normal)
 
    ;; treemacs
-   (treemacs-file-face :foreground fg-alt)
-   (treemacs-directory-face :foreground fg-alt)
+   (treemacs-file-face :foreground fg)
+   (treemacs-directory-face :foreground fg)
    (treemacs-git-modified-face :foreground vcs-modified)
 
    ;; diff-mode
