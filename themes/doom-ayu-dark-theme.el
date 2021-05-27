@@ -35,42 +35,42 @@ determine the exact padding."
   ;; name        default   256       16
   (
    ;; common
-   (common-accent   '("#E6B450" "orange"  "orange" ))
-   (common-bg       '("#0A0E14" "black"   "black"  ))
-   (common-fg       '("#B3B1AD" "grey"    "grey"   ))
-   (common-ui       '("#4D5566" "grey"    "grey"   ))
-   (test            '("#4D5566" "grey"    "grey"   ))
+   (common-accent         '("#E6B450" "orange"  "orange" ))
+   (common-bg             '("#0A0E14" "black"   "black"  ))
+   (common-fg             '("#B3B1AD" "grey"    "grey"   ))
+   (common-ui             '("#4D5566" "grey"    "grey"   ))
    ;; syntax
-   (syntax-tag      '("#39BAE6" "cyan"    "blue"   ))
-   (syntax-func     '("#FFB454" "yellow"  "yellow" ))
-   (syntax-entity   '("#59C2FF" "blue"    "blue"   ))
-   (syntax-string   '("#C2D94C" "green"   "green"  ))
-   (syntax-regexp   '("#95E6CB" "teal"    "green"  ))
-   (syntax-markup   '("#F07178" "red"     "red"    ))
-   (syntax-keyword  '("#FF8F40" "orange"  "orange" ))
-   (syntax-special  '("#E6B673" "yellow"  "yellow" ))
-   (syntax-comment  '("#626A73" "grey"    "grey"   ))
-   (syntax-constant '("#FFEE99" "magenta" "purple" ))
-   (syntax-operator '("#F29668" "orange"  "orange" ))
-   (syntax-error    '("#FF3333" "red"     "red"    ))
+   (syntax-tag            '("#39BAE6" "cyan"    "blue"   ))
+   (syntax-func           '("#FFB454" "yellow"  "yellow" ))
+   (syntax-entity         '("#59C2FF" "blue"    "blue"   ))
+   (syntax-string         '("#C2D94C" "green"   "green"  ))
+   (syntax-regexp         '("#95E6CB" "teal"    "green"  ))
+   (syntax-markup         '("#F07178" "red"     "red"    ))
+   (syntax-keyword        '("#FF8F40" "orange"  "orange" ))
+   (syntax-special        '("#E6B673" "yellow"  "yellow" ))
+   (syntax-comment        '("#626A73" "grey"    "grey"   ))
+   (syntax-constant       '("#FFEE99" "magenta" "purple" ))
+   (syntax-operator       '("#F29668" "orange"  "orange" ))
+   (syntax-error          '("#FF3333" "red"     "red"    ))
    ;; ui
-   (ui-line               (doom-darken common-bg 0.25))
-   (ui-panel-shadow       (doom-darken common-bg 0.35))
-   (ui-panel-border       (doom-darken common-bg 0.45))
-   (ui-gutter-normal      (doom-darken common-ui 0.45)) ;; alpha replacement
-   (ui-gutter-active      common-ui)
-   (ui-selection-bg       (doom-blend common-bg test 0.8)) ;; fade replacement
-   (ui-selection-inactive (doom-lighten test 0.93)) ;; fade replacement
-   (ui-selection-border   (doom-lighten test 0.93)) ;; fade replacement
-   (ui-guide-active       (doom-darken common-ui 0.75)) ;; alpha replacement
-   (ui-guide-normal       (doom-darken common-ui 0.35)) ;; alpha replacement
+   (ui-line               '("#00010A"))
+   (ui-panel-bg           '("#0D1016"))
+   (ui-panel-shadow       '("#00010A"))
+   (ui-panel-border       '("#000000"))
+   (ui-gutter-normal      (doom-darken common-ui 0.99))
+   (ui-gutter-active      (doom-darken common-ui 0.06))
+   (ui-selection-bg       '("#273747"))
+   (ui-selection-inactive '("#1B2733"))
+   (ui-selection-border   '("#304357"))
+   (ui-guide-active       (doom-darken common-ui 0.13))
+   (ui-guide-normal       (doom-darken common-ui 0.66))
    ;; vcs
-   (vcs-added    '("#91b362" "green" "green" ))
-   (vcs-modified '("#6994bf" "blue"  "blue"  ))
-   (vcs-removed  '("#d96c75" "red"   "red"   ))
+   (vcs-added             '("#91B362" "green" "green" ))
+   (vcs-modified          '("#6994BF" "blue"  "blue"  ))
+   (vcs-removed           '("#D96C75" "red"   "red"   ))
 
    (bg         common-bg)
-   (bg-alt     common-bg)
+   (bg-alt     ui-line)
    (base0      ui-gutter-normal)
    (base1      ui-gutter-active)
    (base2      ui-selection-bg)
@@ -89,11 +89,11 @@ determine the exact padding."
    (teal       syntax-regexp)
    (yellow     syntax-func)
    (blue       syntax-entity)
-   (dark-blue  (doom-darken syntax-entity 1))
+   (dark-blue  (doom-darken syntax-entity 0.4))
    (magenta    syntax-constant)
-   (violet     (doom-lighten syntax-constant 1))
+   (violet     (doom-lighten syntax-constant 0.4))
    (cyan       syntax-tag)
-   (dark-cyan  (doom-darken syntax-tag 1))
+   (dark-cyan  (doom-darken syntax-tag 0.4))
 
    ;; face categories -- required for all themes
    (highlight      common-accent)
@@ -126,8 +126,8 @@ determine the exact padding."
     (when doom-ayu-dark-padded-modeline
       (if (integerp doom-ayu-dark-padded-modeline) doom-ayu-dark-padded-modeline 4)))
 
-   (modeline-fg     common-ui)
-   (modeline-fg-alt base5)
+   (modeline-fg     fg)
+   (modeline-fg-alt highlight)
 
    (modeline-bg
     (if -modeline-bright
@@ -137,7 +137,7 @@ determine the exact padding."
     (if -modeline-bright
         (doom-darken blue 0.45)
       `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
-   (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.1) ,@(cdr bg-alt)))
+   (modeline-bg-inactive   `(,(car bg-alt) ,@(cdr bg-alt)))
    (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1)))
    )
 
@@ -145,7 +145,12 @@ determine the exact padding."
   (
    (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
 
+   ;; evil
    (evil-goggles-default-face :inherit 'region :background (doom-blend region bg 0.5))
+   (evil-ex-lazy-highlight :inherit 'region :background (doom-blend region bg 1.9))
+
+   ;; lsp
+   (lsp-face-highlight-read :inherit 'region)
 
    ((line-number &override) :foreground comments)
    ((line-number-current-line &override) :foreground fg)
@@ -179,14 +184,15 @@ determine the exact padding."
    (doom-modeline-bar :background (if -modeline-bright modeline-bg highlight) :weight 'normal)
    (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'normal)
    (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'normal)
-   (doom-modeline-buffer-project-root :foreground green :weight 'normal)
+   ;; (doom-modeline-project-dir :foreground green :weight 'bold) ;; good for testing faces...
+   (doom-modeline-buffer-modified :foreground red :weight 'bold)
 
    ;; ivy-mode
-   (ivy-current-match :background ui-line)
-   (ivy-minibuffer-match-face-1 :foreground common-accent :weight 'bold)
-   (ivy-minibuffer-match-face-2 :foreground common-accent :weight 'bold)
-   (ivy-minibuffer-match-face-3 :foreground common-accent :weight 'bold)
-   (ivy-minibuffer-match-face-4 :foreground common-accent :weight 'bold)
+   (ivy-current-match :background bg)
+   (ivy-minibuffer-match-face-1 :foreground cyan :weight 'bold)
+   (ivy-minibuffer-match-face-2 :foreground magenta :weight 'bold)
+   (ivy-minibuffer-match-face-3 :foreground teal :weight 'bold)
+   (ivy-minibuffer-match-face-4 :foreground green :weight 'bold)
 
    ;; --- major-mode faces -------------------
    ;; css-mode / scss-mode
@@ -211,10 +217,12 @@ determine the exact padding."
    ((org-block-begin-line &override) :background common-bg :foreground syntax-comment)
    ((org-document-info-keyword &override) :foreground syntax-comment)
 
+   ;; rjsx
    (rjsx-tag :foreground cyan)
    (rjsx-tag-bracket-face :foreground (doom-darken cyan 0.5))
    (rjsx-attr :foreground syntax-func)
 
+   ;; company
    (company-tooltip :foreground common-fg :background common-bg)
    (company-tooltip-annotation :foreground common-fg)
    (company-tooltip-selection :background ui-line)
@@ -226,13 +234,13 @@ determine the exact padding."
    (highlight-numbers-number :foreground syntax-func :weight 'normal)
 
    ;; treemacs
-   (treemacs-file-face :foreground fg-alt)
-   (treemacs-directory-face :foreground fg-alt)
+   (treemacs-file-face :foreground fg)
+   (treemacs-directory-face :foreground fg)
    (treemacs-git-modified-face :foreground vcs-modified)
 
    ;; diff-mode
    (diff-removed :foreground vcs-removed)
+   )
   )
-)
 
 ;;; doom-ayu-dark-theme.el ends here
