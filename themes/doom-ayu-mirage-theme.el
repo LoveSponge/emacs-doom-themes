@@ -32,48 +32,48 @@ determine the exact padding."
 (def-doom-theme doom-ayu-mirage
   "A dark theme inspired by Ayu Mirage"
 
-  ;; name        default   256       16
+  ;; name                   default   256       16
   (
    ;; common
-   (common-accent   '("#ffcc66" "orange"  "orange" ))
-   (common-bg       '("#1f2430" "black"   "black"  ))
-   (common-fg       '("#cbccc6" "grey"    "grey"   ))
-   (common-ui       '("#707a8c" "grey"    "grey"   ))
-   (test            '("#7399e6" "grey"    "grey"   ))
+   (common-accent         '("#FFCC66" "orange"  "orange"))
+   (common-bg             '("#1F2430" "black"   "black"))
+   (common-fg             '("#CBCCC6" "grey"    "grey"))
+   (common-ui             '("#707A8C" "grey"    "grey"))
    ;; syntax
-   (syntax-tag      '("#5ccfe6" "cyan"    "blue"   ))
-   (syntax-func     '("#ffd580" "yellow"  "yellow" ))
-   (syntax-entity   '("#73d0ff" "blue"    "blue"   ))
-   (syntax-string   '("#bae67e" "green"   "green"  ))
-   (syntax-regexp   '("#95e6cb" "teal"    "green"  ))
-   (syntax-markup   '("#f28779" "red"     "red"    ))
-   (syntax-keyword  '("#ffa759" "orange"  "orange" ))
-   (syntax-special  '("#ffe6b3" "yellow"  "yellow" ))
-   (syntax-comment  '("#5c6773" "grey"    "grey"   ))
-   (syntax-constant '("#d4bfff" "magenta" "purple" ))
-   (syntax-operator '("#f29e74" "orange"  "orange" ))
-   (syntax-error    '("#ff3333" "red"     "red"    ))
+   (syntax-tag            '("#5CCFE6" "cyan"    "blue"))
+   (syntax-func           '("#FFD580" "yellow"  "yellow"))
+   (syntax-entity         '("#73D0FF" "blue"    "blue"))
+   (syntax-string         '("#BAE67E" "green"   "green"))
+   (syntax-regexp         '("#95E6CB" "teal"    "green"))
+   (syntax-markup         '("#F28779" "red"     "red"))
+   (syntax-keyword        '("#FFA759" "orange"  "orange"))
+   (syntax-special        '("#FFE6B3" "yellow"  "yellow"))
+   (syntax-comment        '("#5C6773" "grey"    "grey"))
+   (syntax-constant       '("#D4BFFF" "magenta" "purple"))
+   (syntax-operator       '("#F29E74" "orange"  "orange"))
+   (syntax-error          '("#FF3333" "red"     "red"))
    ;; ui
-   (ui-line               (doom-darken common-bg 0.25))
-   (ui-panel-shadow       (doom-darken common-bg 0.35))
-   (ui-panel-border       (doom-darken common-bg 0.45))
-   (ui-gutter-normal      (doom-darken common-ui 0.45)) ;; alpha replacement
-   (ui-gutter-active      common-ui)
-   (ui-selection-bg       (doom-blend common-bg test 0.8)) ;; fade replacement
-   (ui-selection-inactive (doom-lighten test 0.23)) ;; fade replacement
-   (ui-selection-border   (doom-lighten test 0.43)) ;; fade replacement
-   (ui-guide-active       (doom-darken common-ui 0.75)) ;; alpha replacement
-   (ui-guide-normal       (doom-darken common-ui 0.35)) ;; alpha replacement
+   (ui-line               '("#191E2A"))
+   (ui-panel-bg           '("#232834"))
+   (ui-panel-shadow       '("#141925"))
+   (ui-panel-border       '("#101521"))
+   (ui-gutter-normal      (doom-darken common-ui 0.36))
+   (ui-gutter-active      (doom-darken common-ui 0.33))
+   (ui-selection-bg       '("#33415E"))
+   (ui-selection-inactive '("#323A4C"))
+   (ui-selection-border   '("#323A4C"))
+   (ui-guide-active       (doom-darken common-ui 0.13))
+   (ui-guide-normal       (doom-darken common-ui 0.40))
    ;; vcs
-   (vcs-added    '("#a6cc70" "green" "green" ))
-   (vcs-modified '("#77a8d9" "blue"  "blue"  ))
-   (vcs-removed  '("#f27983" "red"   "red"   ))
+   (vcs-added    '("#A6CC70" "green" "green"))
+   (vcs-modified '("#77A8D9" "blue"  "blue"))
+   (vcs-removed  '("#F27983" "red"   "red"))
 
    (bg         common-bg)
    (bg-alt     ui-line)
    (base0      ui-gutter-normal)
    (base1      ui-gutter-active)
-   (base2      ui-selection-bg)
+   (base2      ui-panel-bg)
    (base3      ui-selection-inactive)
    (base4      ui-selection-border)
    (base5      ui-guide-active)
@@ -89,7 +89,6 @@ determine the exact padding."
    (teal       syntax-regexp)
    (yellow     syntax-func)
    (blue       syntax-entity)
-   ;; (dark-blue  (doom-darken syntax-entity 0.4))
    (dark-blue  ui-selection-bg)
    (magenta    syntax-constant)
    (violet     (doom-lighten syntax-constant 0.3))
@@ -127,8 +126,8 @@ determine the exact padding."
     (when doom-ayu-mirage-padded-modeline
       (if (integerp doom-ayu-mirage-padded-modeline) doom-ayu-mirage-padded-modeline 4)))
 
-   (modeline-fg     common-fg)
-   (modeline-fg-alt common-accent)
+   (modeline-fg     fg)
+   (modeline-fg-alt highlight)
 
    (modeline-bg
     (if -modeline-bright
@@ -138,9 +137,7 @@ determine the exact padding."
     (if -modeline-bright
         (doom-darken blue 0.45)
       `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
-   ;; (modeline-bg-inactive   (doom-darken highlight 0.5))
-   ;; (modeline-bg-inactive-l (doom-darken green 0.45))
-   (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.7) ,@(cdr bg-alt)))
+   (modeline-bg-inactive   `(,(car bg-alt) ,@(cdr bg-alt)))
    (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1)))
    )
 
@@ -155,7 +152,7 @@ determine the exact padding."
    (lsp-face-highlight-read :inherit 'region)
 
    ((line-number &override) :foreground comments)
-   ((line-number-current-line &override) :foreground fg-alt)
+   ((line-number-current-line &override) :foreground fg)
 
    (font-lock-comment-face
     :foreground comments
@@ -191,10 +188,10 @@ determine the exact padding."
 
    ;; ivy-mode
    (ivy-current-match :background bg)
-   (ivy-minibuffer-match-face-1 :foreground common-accent :weight 'bold)
-   (ivy-minibuffer-match-face-2 :foreground common-accent :weight 'bold)
-   (ivy-minibuffer-match-face-3 :foreground common-accent :weight 'bold)
-   (ivy-minibuffer-match-face-4 :foreground common-accent :weight 'bold)
+   (ivy-minibuffer-match-face-1 :foreground cyan :weight 'bold)
+   (ivy-minibuffer-match-face-2 :foreground magenta :weight 'bold)
+   (ivy-minibuffer-match-face-3 :foreground teal :weight 'bold)
+   (ivy-minibuffer-match-face-4 :foreground green :weight 'bold)
 
    ;; --- major-mode faces -------------------
 
@@ -245,7 +242,7 @@ determine the exact padding."
 
    ;; diff-mode
    (diff-removed :foreground vcs-removed)
+   )
   )
-)
 
 ;;; doom-ayu-mirage-theme.el ends here
