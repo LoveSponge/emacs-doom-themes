@@ -2,12 +2,6 @@
 
 (defvar doom-themes-base-faces
   '(
-    ;;;; --- Doom Emacs specific faces ----------
-    (doom-modeline-error
-     :background (doom-darken red 0.25)
-     :foreground base0
-     :distant-foreground base0)
-    (doom-visual-bell :background error)
     ;;;; --- Base faces -------------------------
     (bold        :weight 'bold :foreground (unless bold base8))
     (bold-italic :inherit '(bold italic))
@@ -20,9 +14,11 @@
     (cursor               :background highlight)
     (shadow               :foreground base5)
     (minibuffer-prompt    :foreground highlight)
-    (tooltip              :background base3 :foreground fg)
+    (tooltip              :background bg-alt :foreground fg)
     (secondary-selection  :background grey :extend t)
-    (lazy-highlight       :background dark-blue  :foreground base8 :distant-foreground base0 :weight 'bold)
+    (lazy-highlight
+     (&dark  :background (doom-darken highlight 0.3)   :foreground base8 :distant-foreground base0 :weight 'bold)
+     (&light :background (doom-blend bg highlight 0.7) :foreground base0 :distant-foreground base8))
     (match                :foreground green      :background base0 :weight 'bold)
     (trailing-whitespace  :background red)
     (nobreak-space        :inherit 'default :underline nil)
@@ -406,6 +402,8 @@
     ;;;; doom-modeline
     (doom-modeline-eldoc-bar :background green)
     (doom-modeline-bar-inactive :background nil) ; transparent
+    ;;;; doom-themes
+    (doom-visual-bell :background error)
     ;;;; ediff <built-in>
     (ediff-fine-diff-A    :background (doom-blend selection bg 0.7) :weight 'bold :extend t)
     (ediff-fine-diff-B    :inherit 'ediff-fine-diff-A)
@@ -533,11 +531,11 @@
     (git-commit-comment-file          :foreground violet)
     (git-commit-comment-action)
     ;;;; git-gutter
-    (git-gutter:modified :inherit 'fringe :foreground cyan)
+    (git-gutter:modified :inherit 'fringe :foreground vc-modified)
     (git-gutter:added    :inherit 'fringe :foreground vc-added)
     (git-gutter:deleted  :inherit 'fringe :foreground vc-deleted)
     ;;;; git-gutter+
-    (git-gutter+-modified :inherit 'fringe :foreground cyan :background nil)
+    (git-gutter+-modified :inherit 'fringe :foreground vc-modified :background nil)
     (git-gutter+-added    :inherit 'fringe :foreground vc-added :background nil)
     (git-gutter+-deleted  :inherit 'fringe :foreground vc-deleted :background nil)
     ;;;; git-gutter-fringe
@@ -716,7 +714,7 @@
     (ivy-confirm-face :foreground success)
     (ivy-match-required-face :foreground error)
     (ivy-virtual :inherit 'italic :foreground doc-comments)
-    (ivy-modified-buffer :inherit 'bold :foreground vc-modified)
+    (ivy-modified-buffer :inherit 'bold :foreground warning)
     ;;;; ivy-posframe
     (ivy-posframe :background (doom-darken bg-alt 0.2))
     (ivy-posframe-border :inherit 'internal-border)
@@ -953,7 +951,10 @@
     (notmuch-wash-cited-text                 :foreground base4)
     (notmuch-wash-toggle-button :foreground fg)
     ;;;; lsp-mode
-    (lsp-face-highlight-textual :background (doom-blend highlight bg 0.3) :foreground base8 :distant-foreground base0 :weight 'bold)
+    (lsp-face-highlight-textual
+     (&all   :weight 'bold)
+     (&light :background base3 :foreground base0 :distant-foreground base8)
+     (&dark  :background (doom-blend highlight bg 0.3) :foreground base8 :distant-foreground base0))
     (lsp-face-highlight-read    :inherit 'lsp-face-highlight-textual)
     (lsp-face-highlight-write   :inherit 'lsp-face-highlight-textual)
     (lsp-ui-doc-background :inherit 'tooltip)
