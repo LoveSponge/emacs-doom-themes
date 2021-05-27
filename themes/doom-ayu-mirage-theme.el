@@ -60,8 +60,8 @@ determine the exact padding."
    (ui-gutter-normal      (doom-darken common-ui 0.45)) ;; alpha replacement
    (ui-gutter-active      common-ui)
    (ui-selection-bg       (doom-blend common-bg test 0.8)) ;; fade replacement
-   (ui-selection-inactive (doom-lighten test 0.93)) ;; fade replacement
-   (ui-selection-border   (doom-lighten test 0.93)) ;; fade replacement
+   (ui-selection-inactive (doom-lighten test 0.23)) ;; fade replacement
+   (ui-selection-border   (doom-lighten test 0.43)) ;; fade replacement
    (ui-guide-active       (doom-darken common-ui 0.75)) ;; alpha replacement
    (ui-guide-normal       (doom-darken common-ui 0.35)) ;; alpha replacement
    ;; vcs
@@ -89,7 +89,8 @@ determine the exact padding."
    (teal       syntax-regexp)
    (yellow     syntax-func)
    (blue       syntax-entity)
-   (dark-blue  (doom-darken syntax-entity 0.4))
+   ;; (dark-blue  (doom-darken syntax-entity 0.4))
+   (dark-blue  ui-selection-bg)
    (magenta    syntax-constant)
    (violet     (doom-lighten syntax-constant 0.3))
    (cyan       syntax-tag)
@@ -137,7 +138,9 @@ determine the exact padding."
     (if -modeline-bright
         (doom-darken blue 0.45)
       `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
-   (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.1) ,@(cdr bg-alt)))
+   ;; (modeline-bg-inactive   (doom-darken highlight 0.5))
+   ;; (modeline-bg-inactive-l (doom-darken green 0.45))
+   (modeline-bg-inactive   `(,(doom-darken (car bg-alt) 0.7) ,@(cdr bg-alt)))
    (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1)))
    )
 
@@ -145,7 +148,11 @@ determine the exact padding."
   (
    (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
 
+   ;; evil
    (evil-goggles-default-face :inherit 'region :background (doom-blend region bg 0.5))
+   (evil-ex-lazy-highlight :inherit 'region :background (doom-blend region bg 1.9))
+
+   (lsp-face-highlight-read :inherit 'region)
 
    ((line-number &override) :foreground comments)
    ((line-number-current-line &override) :foreground fg-alt)
@@ -179,7 +186,7 @@ determine the exact padding."
    (doom-modeline-bar :background (if -modeline-bright modeline-bg highlight) :weight 'normal)
    (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'normal)
    (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'normal)
-   (doom-modeline-project-dir :foreground green :weight 'bold)
+   ;; (doom-modeline-project-dir :foreground green :weight 'bold) ;; good for testing faces...
    (doom-modeline-buffer-modified :foreground red :weight 'bold)
 
    ;; ivy-mode
